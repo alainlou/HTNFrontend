@@ -8,12 +8,14 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import PostList from './PostList';
+
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <SideNav
         onSelect={(selected) => {
           }}
@@ -49,19 +51,23 @@ function App() {
         </SideNav.Nav>
     </SideNav>
     <div className="wide grey-background">
-      <ReactPlayer className="middle" url='https://www.youtube.com/watch?v=MCUERO0gYBc' playing />
+      <ReactPlayer className="middle-align" url='https://www.youtube.com/watch?v=MCUERO0gYBc' playing />
+    </div>
+    <div className="container p-3">
+      <ReactSearchBox
+        placeholder="Search"
+        value="Donald Trump"
+        // data={this.data}
+        callback={record => console.log(record)}
+      />
+      <PostList>
+      </PostList>
     </div>    
-    <ReactSearchBox
-      placeholder="Search"
-      value="Donald Trump"
-      // data={this.data}
-      callback={record => console.log(record)}
-    />
-    <ReactTable
+    {/* <ReactTable
       columns={[
         "Person", "Video", "Phrase"
       ]}
-    />
+    /> */}
   </div>);
 }
 

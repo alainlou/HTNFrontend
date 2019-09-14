@@ -33,13 +33,13 @@
 }
 
 .wide {
-  width: 100vw;
-}
-
-.middle {
-  margin: auto;
+  width: 100%;
 }
 
 .grey-background {
-  background: grey;
+  background: #1a1a1a;
+}
+
+.middle-align {
+  margin: auto;
 }

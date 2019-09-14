@@ -2,34 +2,36 @@ import React, { Component } from 'react';
 
 import Axios from 'axios';
 
+import data from './data';
+
 import Section from './Section';
 
-var data = {
-    "economy" : [
-        {
-            "text": "hello",
-            "context": "lmao"
-        }
-    ],
-    "foreign": [
-        {
-            "text": "hello2",
-            "context": "lmao2"
-        }
-    ],
-    "health": [
-        {
-            "text": "hello",
-            "context": "lmao3"
-        }
-    ],
-    "gun": [
-        {
-            "text": "hello4",
-            "context": "lmao4"
-        }
-    ]
-}
+// var data = {
+//     "economy" : [
+//         {
+//             "text": "hello",
+//             "context": "lmao"
+//         }
+//     ],
+//     "foreign": [
+//         {
+//             "text": "hello2",
+//             "context": "lmao2"
+//         }
+//     ],
+//     "health": [
+//         {
+//             "text": "hello",
+//             "context": "lmao3"
+//         }
+//     ],
+//     "gun": [
+//         {
+//             "text": "hello4",
+//             "context": "lmao4"
+//         }
+//     ]
+// }
 
 class ScrollBox extends Component {
     constructor(props) {

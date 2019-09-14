@@ -19,8 +19,7 @@ class Section extends Component {
         let rows = this.props.data.map((element) => {
             return (
                 <li>
-                    <p>{element.text}</p>
-                    <p>- {element.context}</p>
+                    <p>{element.text} - {element.context}</p>
                 </li>
             );
         })

@@ -33,7 +33,7 @@
 }
 
 .wide {
-  width: 100%;
+  width: 100%;;
 }
 
 .grey-background {
@@ -42,4 +42,15 @@
 
 .middle-align {
   margin: auto;
+}
+
+.flex-container {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+}
+
+.scroll {
+  width: 100%;
+  overflow-y: scroll;
 }

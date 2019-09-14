@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import ReactSearchBox from 'react-search-box';
-import ReactTable from 'react-table';
 
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import PostList from './PostList';
+import ScrollBox from './components/ScrollBox';
 
 import logo from './logo.svg';
 import './App.css';
@@ -53,22 +52,23 @@ function App() {
     <div className="wide grey-background">
       <ReactPlayer className="middle-align" url='https://www.youtube.com/watch?v=MCUERO0gYBc' playing />
     </div>
-    <div className="container p-3">
-      <ReactSearchBox
-        placeholder="Search"
-        value="Donald Trump"
-        // data={this.data}
-        callback={record => console.log(record)}
-      />
-      <PostList>
-      </PostList>
-    </div>    
-    {/* <ReactTable
-      columns={[
-        "Person", "Video", "Phrase"
-      ]}
-    /> */}
-  </div>);
+    <div className="flex-container my-3">
+      <span className="wide">
+        <ReactSearchBox
+          placeholder="Enter Keywords Here"
+          value="Donald Trump"
+          // data={this.data}
+          callback={record => console.log(record)}
+        />
+      </span>      
+      <button className="btn btn-primary mx-3">Search!</button>
+    </div>
+    <div className="flex-container my-3">
+      <ScrollBox>
+      </ScrollBox>
+    </div>
+  </div>
+  );
 }
 
 export default App;

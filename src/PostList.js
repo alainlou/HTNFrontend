@@ -6,7 +6,7 @@ class PostList extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
+        this.props = {
             posts: []
         }
     }

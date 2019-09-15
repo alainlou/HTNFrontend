@@ -13,15 +13,16 @@ import sanders from './media/sanders.jpg';
 class Home extends Component {
     returnCharacters = (characters) => {
         return (
-            characters.map((item) => {
+            characters.map((item, index) => {
                 return (
-                    <Col span={3}>
+                    <Col key={index} span={3}>
                         <Card 
+                            className='hover-over'
                             bordered={false}
-                            cover={<img alt="example" src={item.url} style={{height: '100px'}}/>}
+                            cover={<img alt="example" src={item.url} style={{height: '90px'}}/>}
                             footer={false}
                             hoverable 
-                            bodyStyle={{padding: '10px'}}
+                            bodyStyle={{padding: '3px', textAlign: 'center', color: 'white', backgroundColor: 'black'}}
                             >
                             {item.name}
                         </Card>
@@ -50,8 +51,32 @@ class Home extends Component {
                 url: buttgieg,
             },
             {
-                name: 'Buttgieg',
+                name: 'Booker',
+                url: booker,
+            },
+            {
+                name: 'Biden',
+                url: biden,
+            },
+            {
+                name: 'Bennet',
+                url: bennet,
+            },
+            {
+                name: 'Trump',
+                url: trump,
+            },
+            {
+                name: 'Sanders',
+                url: sanders,
+            },
+            {
+                name: 'Clinton',
                 url: clinton,
+            },
+            {
+                name: 'Buttgieg',
+                url: buttgieg,
             },
             {
                 name: 'Booker',
@@ -82,10 +107,6 @@ class Home extends Component {
                 url: buttgieg,
             },
             {
-                name: 'Buttgieg',
-                url: clinton,
-            },
-            {
                 name: 'Booker',
                 url: booker,
             },
@@ -97,16 +118,37 @@ class Home extends Component {
                 name: 'Bennet',
                 url: bennet,
             },
+            {
+                name: 'Trump',
+                url: trump,
+            },
+            {
+                name: 'Sanders',
+                url: sanders,
+            },
+            {
+                name: 'Clinton',
+                url: clinton,
+            },
         ]
 
         return(
             <div className="home">
                 <div className="main"> 
                     <header className="navigation">
-
+                    <h2> Super Smash Bros USA</h2>
+                    <div className='alignRight'>
+                        <a> Projects </a>
+                        <a> About </a>
+                        <a> Home</a>
+                    </div>
                     </header>
                     <div className="body">
-                        {this.returnCharacters(characters)}
+                        <section className="select-screen">
+                            <div className="characters">
+                                {this.returnCharacters(characters)}
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>

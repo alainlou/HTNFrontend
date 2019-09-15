@@ -1,3 +1,4 @@
+import Axios from 'axios'
 import React, { Component } from 'react';
 import { Button, Col, Row, Card } from 'antd'; 
 import 'antd/dist/antd.css';
@@ -15,7 +16,28 @@ import melee from './media/melee.mp3'
 import { redBright } from 'ansi-colors';
 
 class Home extends Component {
+    constructor(){
+      super();
+      this.state = {
+        chosenCharacter: ''
+      }
+    }
     returnCharacters = (characters) => {
+
+        const chooseCharacter = (characterName) => {
+          console.log(characterName)
+            this.setState({chosenCharacter: characterName})
+        }
+        const requestVideo = (keyword) => {
+          Axios.get("https://htnbackend.appspot.com/search", {
+              params: {
+                searchWord: keyword
+              }})
+              .then(response => {
+                console.log(response)
+                this.setState({videoUrl: response.data});
+              });
+        }
         return (
             characters.map((item, index) => {
                 return (
@@ -26,6 +48,7 @@ class Home extends Component {
                             cover={<img alt="example" src={item.url} style={{height: '90px'}}/>}
                             footer={false}
                             hoverable 
+                            onClick={() => chooseCharacter(item.name)}
                             bodyStyle={{padding: '3px', textAlign: 'center', color: 'white', backgroundColor: 'black'}}
                             >
                             {item.name}

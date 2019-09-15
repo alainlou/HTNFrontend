@@ -17,22 +17,36 @@ class App extends React.Component {
     this.state = {
       searchWord: "",
       data: data,
-      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc"
+      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc",
+      playtime: 0
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   
+  ref = player => {
+    this.player = player;
+  }
   handleChange(event){
-    this.setState({searchWord: event.target.value.toLowerCase() || ""});
+    this.setState({searchWord: event.target.value.toLowerCase()});
   }
 
   onSubmit(event){
-    Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
-      .then(response => {
-        this.setState({videoUrl: response.data});
-      });
+    if (this.state.searchWord && this.state.searchWord != ""){
+      Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
+        .then(response => {
+          this.setState({videoUrl: response.data});
+        });
+    }
     event.preventDefault();
+  }
+  onSeekTo(event){
+    this.player.seekTo(this.state.playtime);
+    event.preventDefault();
+  }
+  changePlaytime(e){
+    this.setState({playtime: parseInt(e.target.value)});
+    e.preventDefault();
   }
   render(){
     return (
@@ -43,22 +57,20 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Link href="#link" onClick={this.onSeekTo}>Link</Nav.Link>
             </Nav>
             </Navbar.Collapse>
         </Navbar>   
         <div className="grey-background">
-          <ReactPlayer className="middle-align" url={this.state.videoUrl} playing controls/>
+          <ReactPlayer className="middle-align" url={this.state.videoUrl} ref={this.ref} playing controls />
         </div>
         <div className="flex-container my-3" id="main_section">
           <span className="col-12">
             <form onSubmit={this.onSubmit}>
-              <input type="text" placeholder="Enter Keywords Here" onChange={this.handleChange.bind(this)} className="form-control"/>
+              <input type="text" placeholder="Enter Keywords Here"  className="form-control" onChange={this.handleChange.bind(this)}/>
+            </form>
+            <form onSubmit={this.onSeekTo.bind(this)}>
+              <input type="text" placeholder="Enter Time Here (in seconds)"  className="form-control" onChange={this.changePlaytime.bind(this)}/>
             </form>
           </span>
         </div>

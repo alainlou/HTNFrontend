@@ -3,33 +3,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 import Section from './Section';
-
-// var data = {
-//     "economy" : [
-//         {
-//             "text": "hello",
-//             "context": "lmao"
-//         }
-//     ],
-//     "foreign": [
-//         {
-//             "text": "hello2",
-//             "context": "lmao2"
-//         }
-//     ],
-//     "health": [
-//         {
-//             "text": "hello",
-//             "context": "lmao3"
-//         }
-//     ],
-//     "gun": [
-//         {
-//             "text": "hello4",
-//             "context": "lmao4"
-//         }
-//     ]
-// }
+import { all } from 'q';
 
 class ScrollBox extends Component {
     constructor(props) {
@@ -37,36 +11,35 @@ class ScrollBox extends Component {
         this.state = {
             content: this.props.content
         }
+        this.allKeyWords = this.allKeyWords.bind(this);
     }
-    render() {
-        return(
-            <div className="scroll">
-                <Section 
-                title="Economy"
-                data={this.state.content.economy}/>
-                <Section title="Foreign Relations"
-                data={this.state.content.foreign}/>
-                <Section title="Healthcare"
-                data={this.state.content.health}/>
-                <Section title="Gun Control"
-                data={this.state.content.gun}/>
-            </div>
-        );
-    }
-
     componentDidMount() {
         this.getData();
     }
 
     getData() {
-        // Axios.get("../../");
-        console.log("hello");
         this.setState({
             content: this.props.content
         });
-        console.log(this.state);
         this.forceUpdate();
     }
+    allKeyWords(){
+        console.log(this.props.content);
+        let allWords = this.state.content.map((element) => {
+            return (
+                <Section title={element.name} data={element.appearances}/>
+            );
+        })
+        return allWords;
+    }
+    render() {
+        return(
+            <div className="scroll">
+                
+            </div>
+        );
+    }
+
 }
 
 export default ScrollBox;

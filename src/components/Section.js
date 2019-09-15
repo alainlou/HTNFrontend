@@ -14,7 +14,7 @@ class Section extends Component {
         )
     }
     rows() {
-        if(this.props.data === null){
+        if(!this.props.data){
             return (<p>No content</p>);
         }
         let rows = this.props.data.map((element) => {

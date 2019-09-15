@@ -9,9 +9,10 @@ class ScrollBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            content: this.props.content
+            content: this.props.content,
+            playtime: 0
         }
-        this.allKeyWords = this.allKeyWords.bind(this);
+        this.allKeys = this.allKeys.bind(this);
     }
     componentDidMount() {
         this.getData();
@@ -23,19 +24,23 @@ class ScrollBox extends Component {
         });
         this.forceUpdate();
     }
-    allKeyWords(){
-        console.log(this.props.content);
-        let allWords = this.state.content.map((element) => {
+    allKeys() {
+        if (!this.props.content){
+            return <p>No Content</p>;
+        }
+        let rows = Object.keys(this.props.content).map((key, index) => {
             return (
-                <Section title={element.name} data={element.appearances}/>
+                <li>
+                    <Section title={key} data={this.props.content[key]}/>
+                </li>
             );
         })
-        return allWords;
+        return <ul>{rows}</ul>
     }
     render() {
         return(
             <div className="scroll">
-                
+                {this.allKeys()}
             </div>
         );
     }

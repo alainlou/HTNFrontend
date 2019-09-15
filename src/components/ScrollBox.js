@@ -24,9 +24,6 @@ class ScrollBox extends Component {
         });
         this.forceUpdate();
     }
-    changePlaytime(){
-        this.props.changePlaytime();
-    }
     allKeys() {
         if (!this.props.content){
             return <p>No Content</p>;
@@ -34,7 +31,7 @@ class ScrollBox extends Component {
         let rows = Object.keys(this.props.content).map((key, index) => {
             return (
                 <li>
-                    <Section title={key} data={this.props.content[key]} changePlaytime={this.changePlaytime.bind(this)} />
+                    <Section title={key} data={this.props.content[key]}/>
                 </li>
             );
         })
@@ -44,10 +41,6 @@ class ScrollBox extends Component {
         return(
             <div className="scroll">
                 {this.allKeys()}
-                {/* <Section title="Climate Change" data={this.props.content["climate change"]} changePlaytime={this.changePlaytime.bind(this)}/>
-                <Section title="Guns" data={this.props.content["guns"]}  changePlaytime={this.changePlaytime.bind(this)}/>
-                <Section title="Minimum Wage" data={this.props.content["minimum wage"]} changePlaytime={this.changePlaytime.bind(this)}/>
-                <Section title="Mental Health" data={this.props.content["mental health"]} changePlaytime={this.changePlaytime.bind(this)}/> */}
             </div>
         );
     }

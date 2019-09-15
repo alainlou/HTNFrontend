@@ -13,9 +13,6 @@ class Section extends Component {
             </div>
         )
     }
-    changePlaytime(){
-        this.props.changePlaytime();
-    }
     rows() {
         if(!this.props.data){
             return (<p>No content</p>);
@@ -23,7 +20,7 @@ class Section extends Component {
         let rows = this.props.data.map((element) => {
             return (
                 <li>
-                    <p onClick={this.changePlaytime}>{element}</p>
+                    <p>{element}</p>
                 </li>
             );
         })

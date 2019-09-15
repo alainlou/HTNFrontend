@@ -7,7 +7,6 @@ import { Input } from 'antd';
 // import 'antd/dist/antd.css';
 
 import ScrollBox from './components/ScrollBox';
-import data from './components/data';
 import Home from './Home';
 
 import './App.css';
@@ -86,7 +85,7 @@ class App extends React.Component {
             </span>
           </div>
           <div className="flex-container my-3">
-            <ScrollBox content={this.state.data} changePlaytime={this.changePlaytime.bind(this)}>
+            <ScrollBox content={this.state.data} >
             </ScrollBox>
           </div>
         </div>

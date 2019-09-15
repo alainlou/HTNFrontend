@@ -9,20 +9,36 @@ import ScrollBox from './components/ScrollBox';
 import './App.css';
 
 import data from './components/data';
+import Axios from 'axios';
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      searchWord: ""
+      searchWord: "",
+      data: data,
+      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc"
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+  // getNewState = async () => {
+  //   try {
+  //     return Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}});
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   handleChange(event){
     this.setState({searchWord: event.target.value.toLowerCase() || ""});
   }
   onSubmit(event){
+    Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
+      .then(response => {
+        this.setState({videoUrl: response.data});
+      });
+    // console.log(newData);
+    // this.setState({data: newData});
     event.preventDefault();
   }
   render(){
@@ -37,8 +53,6 @@ class App extends React.Component {
                 <Nav.Link href="#link">Link</Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                 </NavDropdown>
@@ -46,17 +60,17 @@ class App extends React.Component {
             </Navbar.Collapse>
         </Navbar>   
         <div className="grey-background">
-          <ReactPlayer className="middle-align" url='https://www.youtube.com/watch?v=MCUERO0gYBc' playing />
+          <ReactPlayer className="middle-align" url={this.state.videoUrl} playing />
         </div>
-        <div className="flex-container my-3">
+        <div className="flex-container my-3" id="main_section">
           <span className="col-12">
             <form onSubmit={this.onSubmit}>
-              <input type="text" placeholder="Enter Keywords Here" onChange={this.handleChange} className="form-control"/>
+              <input type="text" placeholder="Enter Keywords Here" onChange={this.handleChange.bind(this)} className="form-control"/>
             </form>
           </span>
         </div>
         <div className="flex-container my-3">
-          <ScrollBox content={data}>
+          <ScrollBox content={this.state.data}>
           </ScrollBox>
         </div>
       </div>

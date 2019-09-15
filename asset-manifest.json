@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1110ed02.chunk.css",
+    "main.js": "/static/js/main.0460af13.chunk.js",
+    "main.js.map": "/static/js/main.0460af13.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.1dc4db23.js",
+    "runtime~main.js.map": "/static/js/runtime~main.1dc4db23.js.map",
+    "static/css/2.eec0e7d2.chunk.css": "/static/css/2.eec0e7d2.chunk.css",
+    "static/js/2.d910bfc2.chunk.js": "/static/js/2.d910bfc2.chunk.js",
+    "static/js/2.d910bfc2.chunk.js.map": "/static/js/2.d910bfc2.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9ae71de979849fff5fd9421d29a8dc56.js": "/precache-manifest.9ae71de979849fff5fd9421d29a8dc56.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.eec0e7d2.chunk.css.map": "/static/css/2.eec0e7d2.chunk.css.map",
+    "static/css/main.1110ed02.chunk.css.map": "/static/css/main.1110ed02.chunk.css.map",
+    "static/media/bennet.jpg": "/static/media/bennet.32043a84.jpg",
+    "static/media/bernie.jpg": "/static/media/bernie.07e03aca.jpg",
+    "static/media/biden.png": "/static/media/biden.c3fe8b84.png",
+    "static/media/blue.png": "/static/media/blue.85a1c381.png",
+    "static/media/booker.jpg": "/static/media/booker.ed1bf4fa.jpg",
+    "static/media/buttgieg.jpeg": "/static/media/buttgieg.5e541762.jpeg",
+    "static/media/donaldtrump.jpg": "/static/media/donaldtrump.7eb5aca9.jpg",
+    "static/media/hillary.jpg": "/static/media/hillary.e6f97f75.jpg",
+    "static/media/melee.mp3": "/static/media/melee.cdc97cdc.mp3",
+    "static/media/red.png": "/static/media/red.cfab92a3.png",
+    "static/media/sanders.jpg": "/static/media/sanders.7188f4b7.jpg"
+  }
+}

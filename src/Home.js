@@ -15,7 +15,6 @@ import blue from './media/blue.png'
 import melee from './media/melee.mp3'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { redBright } from 'ansi-colors';
-import { Link } from 'react-router-dom';
 
 class Home extends Component {
     constructor(props){

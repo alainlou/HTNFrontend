@@ -26,12 +26,16 @@ class App extends React.Component {
     this.state = {
       searchWord: "",
       data: data,
-      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc"
+      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc",
+      playtime: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
   
+  ref = player => {
+    this.player = player;
+  }
   handleChange(event){
     this.setState({searchWord: event.target.value});
   }
@@ -50,6 +54,10 @@ class App extends React.Component {
           this.setState({videoUrl: response.data}); //get request returns promise here
         });
       }
+  }
+  changePlaytime(e){
+    this.setState({playtime: parseInt(e.target.value)});
+    e.preventDefault();
   }
   render(){
     return (

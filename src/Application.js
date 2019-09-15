@@ -8,15 +8,6 @@ import Home from './Home';
 import './App.css';
 
 class Application extends React.Component {
-    render(){
-        return (
-            <Router>
-                <div className="table">
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/app/:name" component={App} />
-                </div>
-            </Router>
-        )
   constructor() {
     super();
     this.state = {

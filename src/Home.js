@@ -13,13 +13,17 @@ import sanders from './media/sanders.jpg';
 import red from './media/red.png'
 import blue from './media/blue.png'
 import melee from './media/melee.mp3'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { redBright } from 'ansi-colors';
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
+
       this.state = {
+        homeCallback: props.homeCallback,
+        characterName: "",
         confirmation: {
             url: red,
         },
@@ -55,7 +59,7 @@ class Home extends Component {
                             cover={<img alt="example" src={item.url} style={{height: '90px'}}/>}
                             footer={false}
                             hoverable 
-                            onClick={() => this.chooseCharacter(item)}
+                            onClick={() => (this.chooseCharacter(item), this.setState({characterName: item.name}))}
                             bodyStyle={{padding: '3px', textAlign: 'center', color: 'white', backgroundColor: 'black'}}
                             >
                             {item.name}

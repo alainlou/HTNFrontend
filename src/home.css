@@ -48,11 +48,11 @@
 }
 
 .hover {
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .hover-over:hover {
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .child {

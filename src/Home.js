@@ -19,25 +19,30 @@ class Home extends Component {
     constructor(){
       super();
       this.state = {
-        chosenCharacter: ''
+        confirmation: {
+            url: red,
+        },
       }
     }
-    returnCharacters = (characters) => {
 
-        const chooseCharacter = (characterName) => {
-          console.log(characterName)
-            this.setState({chosenCharacter: characterName})
-        }
-        const requestVideo = (keyword) => {
-          Axios.get("https://htnbackend.appspot.com/search", {
-              params: {
-                searchWord: keyword
-              }})
-              .then(response => {
-                console.log(response)
-                this.setState({videoUrl: response.data});
-              });
-        }
+    chooseCharacter = (characterName) => {
+        console.log(characterName)
+        this.setState({confirmation: characterName})
+    }
+
+    requestVideo = (keyword) => {
+        console.log(keyword)
+        Axios.get("https://htnbackend.appspot.com/search", {
+            params: {
+              searchWord: keyword
+            }})
+            .then(response => {
+              console.log(response)
+              this.setState({videoUrl: response.data});
+            });
+      }
+
+    returnCharacters = (characters) => {
         return (
             characters.map((item, index) => {
                 return (
@@ -48,7 +53,7 @@ class Home extends Component {
                             cover={<img alt="example" src={item.url} style={{height: '90px'}}/>}
                             footer={false}
                             hoverable 
-                            onClick={() => chooseCharacter(item.name)}
+                            onClick={() => this.chooseCharacter(item)}
                             bodyStyle={{padding: '3px', textAlign: 'center', color: 'white', backgroundColor: 'black'}}
                             >
                             {item.name}
@@ -59,7 +64,20 @@ class Home extends Component {
         );
     }
 
+    renderButton = () => {
+        const { confirmation } = this.state;
+        if (confirmation){
+            return (
+                <Button style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button>  
+            );
+        } 
+        else {
+            return;
+        }
+    }
+
     render(){
+        const { confirmation } = this.state;
         const characters = [
             {
                 name: 'Trump',
@@ -158,7 +176,7 @@ class Home extends Component {
                 url: clinton,
             },
         ]
-
+        
         return(
             <div className="home">
                 <audio src='./media/melee.mp3'></audio>
@@ -175,10 +193,10 @@ class Home extends Component {
                                     <audio style={{margin: '32px 0px'}} controls>
                                         <source src={melee} type="audio/mpeg"/>
                                     </audio>
-                                    <Button style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button>    
+                            {confirmation.name ? <Button onClick={() => this.requestVideo(confirmation.name)} style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button> : null}
                             </div>
                             <div className='parent'>
-                                <img className='child' src={red} />
+                                <img className='child' src={confirmation.url} />
                                 <img className='child' src={blue} />
                             </div>
                         </section>

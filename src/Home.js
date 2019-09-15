@@ -106,7 +106,7 @@ class Home extends Component {
 
                     </header>
                     <div className="body">
-                        {this.returnCharacters(characters)}
+                        {/* {this.returnCharacters(characters)} */}
                     </div>
                 </div>
             </div>

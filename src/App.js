@@ -4,33 +4,31 @@ import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from "react-boots
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Input } from 'antd'; 
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 import ScrollBox from './components/ScrollBox';
 import data from './components/data';
+import Home from './Home';
 
 import './App.css';
 import Axios from 'axios';
-
-function Home() {
-  return (
-    <div>
-
-    </div>
-  )
-}
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
       searchWord: "",
-      data: data,
-      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc",
+      data: "",
+      videoUrl: "",
       playtime: 0
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    Axios.get("https://htnbackend.appspot.com/")
+      .then(response => {
+        this.setState({data: response.data.data, videoUrl: response.data.url});
+      })
+    this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.ScrollBox = React.createRef();
   }
   
   ref = player => {
@@ -40,25 +38,21 @@ class App extends React.Component {
     this.setState({searchWord: event.target.value});
   }
 
-  handleSubmit(e){
-    const { searchWord } = this.state;
-    e.preventDefault()
-      if (searchWord){
-        console.log(this.state.searchWord.toLowerCase())
-        Axios.get("https://htnbackend.appspot.com/", {
-        params: {
-          searchWord: this.state.searchWord
-        }})
+  onSubmit(event){
+    if (this.state.searchWord && this.state.searchWord !== ""){
+      Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
         .then(response => {
-          console.log(response)
-          this.setState({videoUrl: response.data}); //get request returns promise here
+          this.setState({data: response.data.data, videoUrl: response.data.url});
         });
       }
+    // this.ScrollBox.forceUpdate();
+    event.preventDefault();
   }
   changePlaytime(e){
     this.setState({playtime: parseInt(e.target.value)});
     e.preventDefault();
   }
+
   render(){
     return (
       <Router> 
@@ -86,13 +80,13 @@ class App extends React.Component {
           </div>
           <div className="flex-container my-3" id="main_section">
             <span className="col-12">
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.onSubmit}>
                 <input type="text" placeholder="Enter Keywords Here" onChange={this.handleChange.bind(this)} value={this.state.searchWord} className="form-control"/>
               </form>
             </span>
           </div>
           <div className="flex-container my-3">
-            <ScrollBox content={this.state.data}>
+            <ScrollBox content={this.state.data} changePlaytime={this.changePlaytime.bind(this)}>
             </ScrollBox>
           </div>
         </div>

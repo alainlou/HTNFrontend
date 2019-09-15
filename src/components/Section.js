@@ -13,14 +13,17 @@ class Section extends Component {
             </div>
         )
     }
+    changePlaytime(){
+        this.props.changePlaytime();
+    }
     rows() {
-        if(this.props.data === null){
+        if(!this.props.data){
             return (<p>No content</p>);
         }
         let rows = this.props.data.map((element) => {
             return (
                 <li>
-                    <p>{element}</p>
+                    <p onClick={this.changePlaytime}>{element}</p>
                 </li>
             );
         })

@@ -9,9 +9,10 @@ class ScrollBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            content: this.props.content
+            content: this.props.content,
+            playtime: 0
         }
-        this.allKeyWords = this.allKeyWords.bind(this);
+        this.allKeys = this.allKeys.bind(this);
     }
     componentDidMount() {
         this.getData();
@@ -23,19 +24,30 @@ class ScrollBox extends Component {
         });
         this.forceUpdate();
     }
-    allKeyWords(){
-        console.log(this.props.content);
-        let allWords = this.state.content.map((element) => {
+    changePlaytime(){
+        this.props.changePlaytime();
+    }
+    allKeys() {
+        if (!this.props.content){
+            return <p>No Content</p>;
+        }
+        let rows = Object.keys(this.props.content).map((key, index) => {
             return (
-                <Section title={element.name} data={element.appearances}/>
+                <li>
+                    <Section title={key} data={this.props.content[key]} changePlaytime={this.changePlaytime.bind(this)} />
+                </li>
             );
         })
-        return allWords;
+        return <ul>{rows}</ul>
     }
     render() {
         return(
             <div className="scroll">
-                
+                {this.allKeys()}
+                {/* <Section title="Climate Change" data={this.props.content["climate change"]} changePlaytime={this.changePlaytime.bind(this)}/>
+                <Section title="Guns" data={this.props.content["guns"]}  changePlaytime={this.changePlaytime.bind(this)}/>
+                <Section title="Minimum Wage" data={this.props.content["minimum wage"]} changePlaytime={this.changePlaytime.bind(this)}/>
+                <Section title="Mental Health" data={this.props.content["mental health"]} changePlaytime={this.changePlaytime.bind(this)}/> */}
             </div>
         );
     }

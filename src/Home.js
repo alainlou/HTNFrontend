@@ -1,3 +1,4 @@
+import Axios from 'axios'
 import React, { Component } from 'react';
 import { Col, Row, Card } from 'antd'; 
 import 'antd/dist/antd.css';
@@ -11,7 +12,28 @@ import trump from './media/donaldtrump.jpg';
 import sanders from './media/sanders.jpg';
 
 class Home extends Component {
+    constructor(){
+      super();
+      this.state = {
+        chosenCharacter: ''
+      }
+    }
     returnCharacters = (characters) => {
+
+        const chooseCharacter = (characterName) => {
+          console.log(characterName)
+            this.setState({chosenCharacter: characterName})
+        }
+        const requestVideo = (keyword) => {
+          Axios.get("https://htnbackend.appspot.com/search", {
+              params: {
+                searchWord: keyword
+              }})
+              .then(response => {
+                console.log(response)
+                this.setState({videoUrl: response.data});
+              });
+        }
         return (
             characters.map((item) => {
                 return (
@@ -22,6 +44,7 @@ class Home extends Component {
                             footer={false}
                             hoverable 
                             bodyStyle={{padding: '10px'}}
+                            onClick={() => chooseCharacter(item.name)}
                             >
                             {item.name}
                         </Card>

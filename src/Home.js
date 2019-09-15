@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import React, { Component } from 'react';
-import { Col, Row, Card } from 'antd'; 
+import { Button, Col, Row, Card } from 'antd'; 
 import 'antd/dist/antd.css';
 import './home.css'
 import bennet from './media/bennet.jpg';
@@ -10,6 +10,10 @@ import buttgieg from './media/buttgieg.jpeg';
 import clinton from './media/hillary.jpg';
 import trump from './media/donaldtrump.jpg';
 import sanders from './media/sanders.jpg';
+import red from './media/red.png'
+import blue from './media/blue.png'
+import melee from './media/melee.mp3'
+import { redBright } from 'ansi-colors';
 
 class Home extends Component {
     constructor(){
@@ -157,19 +161,25 @@ class Home extends Component {
 
         return(
             <div className="home">
+                <audio src='./media/melee.mp3'></audio>
                 <div className="main"> 
                     <header className="navigation">
                     <h2> Super Smash Bros USA</h2>
                     <div className='alignRight'>
-                        <a> Projects </a>
-                        <a> About </a>
-                        <a> Home</a>
                     </div>
                     </header>
                     <div className="body">
                         <section className="select-screen">
                             <div className="characters">
                                 {this.returnCharacters(characters)}
+                                    <audio style={{margin: '32px 0px'}} controls>
+                                        <source src={melee} type="audio/mpeg"/>
+                                    </audio>
+                                    <Button style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button>    
+                            </div>
+                            <div className='parent'>
+                                <img className='child' src={red} />
+                                <img className='child' src={blue} />
                             </div>
                         </section>
                     </div>

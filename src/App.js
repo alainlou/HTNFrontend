@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Input } from 'antd'; 
+import 'antd/dist/antd.css';
 
 import ScrollBox from './components/ScrollBox';
+import data from './components/data';
 
 import './App.css';
-
-import data from './components/data';
+import { AST_Node } from 'terser';
+import { animationFrameScheduler } from 'rxjs';
 
 class App extends React.Component {
   constructor(){
@@ -28,7 +30,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="container-fluid">
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" className="navbar">
             <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

@@ -36,7 +36,8 @@
   }
 
 .select-screen {
-    background-image: linear-gradient(black 90%, white 10%);
+    background-color: black;
+    background-image: linear-gradient(black, #696969);
     height: 100vh;
 }
 
@@ -52,4 +53,9 @@
 
 .hover-over:hover {
     opacity: 0.7;
+}
+
+.child {
+    height: 33vh;
+    width: 50%;
 }

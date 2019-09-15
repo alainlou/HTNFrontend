@@ -13,12 +13,16 @@ import sanders from './media/sanders.jpg';
 import red from './media/red.png'
 import blue from './media/blue.png'
 import melee from './media/melee.mp3'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { redBright } from 'ansi-colors';
 
 class Home extends Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
+
       this.state = {
+        homeCallback: props.homeCallback,
+        characterName: "",
         confirmation: {
             url: red,
         },
@@ -53,7 +57,7 @@ class Home extends Component {
                             cover={<img alt="example" src={item.url} style={{height: '90px'}}/>}
                             footer={false}
                             hoverable 
-                            onClick={() => this.chooseCharacter(item)}
+                            onClick={() => (this.chooseCharacter(item), this.setState({characterName: item.name}))}
                             bodyStyle={{padding: '3px', textAlign: 'center', color: 'white', backgroundColor: 'black'}}
                             >
                             {item.name}
@@ -193,7 +197,8 @@ class Home extends Component {
                                     <audio style={{margin: '32px 0px'}} controls>
                                         <source src={melee} type="audio/mpeg"/>
                                     </audio>
-                                {confirmation.name ? <Button onClick={() => this.requestVideo(confirmation.name)} style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button> : null}
+                                {confirmation.name ? <Button onClick={() => this.state.homeCallback(this.state.characterName)} style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button> : null}
+                            <Link onClick={this.state.homeCallback(() => this.state.characterName)} to='/app'>button</Link>
                             </div>
                             <div className='parent'>
                                 <img className='child' src={confirmation.url} />

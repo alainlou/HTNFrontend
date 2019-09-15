@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import Axios from 'axios';
 
-import data from './data';
-
 import Section from './Section';
 
 // var data = {
@@ -37,10 +35,7 @@ class ScrollBox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            economy: null,
-            foreign: null,
-            health: null,
-            gun: null
+            content: this.props.content
         }
     }
     render() {
@@ -48,13 +43,13 @@ class ScrollBox extends Component {
             <div className="scroll">
                 <Section 
                 title="Economy"
-                data={this.state.economy}/>
+                data={this.state.content.economy}/>
                 <Section title="Foreign Relations"
-                data={this.state.foreign}/>
+                data={this.state.content.foreign}/>
                 <Section title="Healthcare"
-                data={this.state.health}/>
+                data={this.state.content.health}/>
                 <Section title="Gun Control"
-                data={this.state.gun}/>
+                data={this.state.content.gun}/>
             </div>
         );
     }
@@ -67,10 +62,7 @@ class ScrollBox extends Component {
         // Axios.get("../../");
         console.log("hello");
         this.setState({
-            economy: data.economy,
-            foreign: data.foreign,
-            health: data.health,
-            gun: data.gun
+            content: this.props.content
         });
         console.log(this.state);
         this.forceUpdate();

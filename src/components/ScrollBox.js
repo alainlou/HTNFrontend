@@ -41,6 +41,7 @@ class ScrollBox extends Component {
     render() {
         return(
             <div className="scroll">
+                <h2>{this.props.name}</h2>
                 <Section 
                 title="Economy"
                 data={this.state.content.economy}/>

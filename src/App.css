@@ -45,9 +45,8 @@
 }
 
 .flex-container {
-  margin-left: 10%;
-  margin-right: 10%;
   display: flex;
+  flex-direction: row;
 }
 
 .scroll {
@@ -58,4 +57,12 @@
 
 ul {
   list-style: none;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.limit-x {
+  max-width: 15em;
 }

@@ -175,7 +175,7 @@ class Home extends Component {
                                     <audio style={{margin: '32px 0px'}} controls>
                                         <source src={melee} type="audio/mpeg"/>
                                     </audio>
-                                    <Button style={{float: 'right', top: '44px'}} type='primary' size='large'> Confirm Character </Button>    
+                                    <Button style={{float: 'right', top: '44px'}} type='primary' size='large' href="/app"> Confirm Character </Button>    
                             </div>
                             <div className='parent'>
                                 <img className='child' src={red} />

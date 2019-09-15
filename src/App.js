@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-
+import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav, Navbar, NavDropdown, Form, FormControl, Button, Card } from "react-bootstrap";
+import { Input } from 'antd'; 
+import 'antd/dist/antd.css';
 
 import ScrollBox from './components/ScrollBox';
+import Home from './Home';
 
 import './App.css';
 
@@ -12,31 +15,59 @@ import Bernie from './img/bernie.jpg';
 
 import data from './components/data';
 import Axios from 'axios';
-import { CardBody, CardHeader } from 'react-bootstrap/Card';
+import Card, { CardBody, CardHeader } from 'react-bootstrap/Card';
 
 class App extends React.Component {
-  constructor(){
-    super();
+  constructor(props){    
+    super(props);
+    console.log(this.props.match.params.name);
     this.state = {
-      searchWord: "",
-      data: data,
-      videoUrl: "https://www.youtube.com/watch?v=MCUERO0gYBc"
+      searchWord: this.props.match.params.name,
+      data: "",
+      videoUrl: "",
+      playtime: 0
     }
+    // Axios.get("https://htnbackend.appspot.com/")
+    //   .then(response => {
+    //     this.setState({data: response.data.data, videoUrl: response.data.url});
+    //   })
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.ScrollBox = React.createRef();
+    this.updateCandidate()
   }
   
+  ref = player => {
+    this.player = player;
+  }
   handleChange(event){
-    this.setState({searchWord: event.target.value.toLowerCase() || ""});
+    this.setState({searchWord: event.target.value});
+  }
+
+  updateCandidate() {
+    if (this.state.searchWord && this.state.searchWord !== ""){
+      Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
+        .then(response => {
+          this.setState({data: response.data.data, videoUrl: response.data.url});
+        });
+      }
   }
 
   onSubmit(event){
-    Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
-      .then(response => {
-        this.setState({videoUrl: response.data.url});
-      });
+    if (this.state.searchWord && this.state.searchWord !== ""){
+      Axios.get("https://htnbackend.appspot.com/", {params:{searchWord: this.state.searchWord}})
+        .then(response => {
+          this.setState({data: response.data.data, videoUrl: response.data.url});
+        });
+      }
+    // this.ScrollBox.forceUpdate();
     event.preventDefault();
   }
+  changePlaytime(e){
+    this.setState({playtime: parseInt(e.target.value)});
+    e.preventDefault();
+  }
+
   render(){
     return (
       <div className="container-fluid">
@@ -72,7 +103,7 @@ class App extends React.Component {
             <div className="m-3" id="main_section">
               <span className="col-12">
                 <form onSubmit={this.onSubmit}>
-                  <input type="text" placeholder="Enter Keywords Here" onChange={this.handleChange.bind(this)} className="form-control"/>
+                  <input type="text" value={this.state.searchWord} placeholder="Enter Keywords Here" onChange={this.handleChange.bind(this)} className="form-control"/>
                 </form>
               </span>
             </div>

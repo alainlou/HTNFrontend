@@ -14,12 +14,13 @@ class Section extends Component {
         )
     }
     rows() {
-        if(this.props.data === null)
-        return (<p>No content</p>);
+        if(!this.props.data){
+            return (<p>No content</p>);
+        }
         let rows = this.props.data.map((element) => {
             return (
                 <li>
-                    <p>{element.text} - {element.context}</p>
+                    <p>{element}</p>
                 </li>
             );
         })

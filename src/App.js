@@ -11,7 +11,9 @@ import Home from './Home';
 
 import './App.css';
 
-import Bernie from './img/bernie.jpg';
+import Bernie from './media/sanders.jpg';
+import Trump from './media/donaldtrump.jpg';
+import Buttigieg from './media/buttigieg.jpeg';
 
 import data from './components/data';
 import Axios from 'axios';
@@ -68,7 +70,30 @@ class App extends React.Component {
     e.preventDefault();
   }
 
-  
+  getDetails() {
+    if(this.state.searchWord.toLowerCase() === "sanders") {
+      return [Bernie, "Bernie Sanders", "Senator from Vermont"];
+    } else if(this.state.searchWord.toLowerCase() === "trump") {
+      return [Trump, "Donald Trump", "President of the US"];
+    } else {
+      return [Buttigieg, "Pete Buttigieg", "Mayor of South Bend"];
+    }
+  }
+
+  candidate() {
+    let data = this.getDetails();
+    return (
+      <Card className="m-3 limit-x">
+        <Card.Body>
+          <Card.Img src={data[0]} />
+          <div className="my-2">
+            <Card.Title>{data[1]}</Card.Title>
+            <Card.Text>{data[2]}</Card.Text>
+          </div>
+        </Card.Body>
+      </Card>
+    );
+  }  
 
   render(){
     return (
@@ -92,15 +117,7 @@ class App extends React.Component {
           <ReactPlayer className="middle-align" url={this.state.videoUrl} playing controls/>
         </div>
         <div className="flex-container">
-          <Card className="m-3 limit-x">
-            <Card.Body>
-              <Card.Img src={Bernie} />
-              <div className="my-2">
-                <Card.Title>Bernie Sanders</Card.Title>
-                <Card.Text>Senator from Vermont</Card.Text>
-              </div>
-            </Card.Body>
-          </Card>
+          {this.candidate()}
           <div className="grow">
             <div className="m-3" id="main_section">
               <span className="col-12">

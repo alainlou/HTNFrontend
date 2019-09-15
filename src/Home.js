@@ -6,7 +6,7 @@ import './home.css'
 import bennet from './media/bennet.jpg';
 import biden from './media/biden.png';
 import booker from './media/booker.jpg';
-import buttgieg from './media/buttgieg.jpeg';
+import buttigieg from './media/buttigieg.jpeg';
 import clinton from './media/hillary.jpg';
 import trump from './media/donaldtrump.jpg';
 import sanders from './media/sanders.jpg';
@@ -100,8 +100,8 @@ class Home extends Component {
                 url: clinton,
             },
             {
-                name: 'Buttgieg',
-                url: buttgieg,
+                name: 'Buttigieg',
+                url: buttigieg,
             },
             {
                 name: 'Booker',
@@ -128,8 +128,8 @@ class Home extends Component {
                 url: clinton,
             },
             {
-                name: 'Buttgieg',
-                url: buttgieg,
+                name: 'Buttigieg',
+                url: buttigieg,
             },
             {
                 name: 'Booker',
@@ -156,8 +156,8 @@ class Home extends Component {
                 url: clinton,
             },
             {
-                name: 'Buttgieg',
-                url: buttgieg,
+                name: 'Buttigieg',
+                url: buttigieg,
             },
             {
                 name: 'Booker',
